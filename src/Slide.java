@@ -26,7 +26,7 @@ public class Slide {
                     photosInSlide.add(photo2Add);
                     freeSpaces--;
                 } else {
-                    throw new IllegalAccessException("Garbage 2");
+                    throw new IllegalAccessException("Free spaces " + freeSpaces);
                 }
                 break;
             case HORIZONTAL:
@@ -39,10 +39,15 @@ public class Slide {
     }
 
     public void printSlideInfo(PrintWriter myWriter) {
-        Iterator test = photosInSlide.iterator();
-        while (test.hasNext()) {
-            Photo photoTest = (Photo) test.next();
-            myWriter.write(photoTest.getPhotoID() + " ");
+        for (int index = 0; index < photosInSlide.size(); index++) {
+            Photo photoTest = photosInSlide.get(index);
+            String testWrite;
+            if ((photoTest.getOrientation() == Photo.Photo_Orientation.VERTICAL) && (index == 0)) {
+                testWrite = photoTest.getPhotoID() + " ";
+            } else {
+                testWrite = String.valueOf(photoTest.getPhotoID());
+            }
+            myWriter.write(testWrite);
         }
         myWriter.write("\r\n");
     }
