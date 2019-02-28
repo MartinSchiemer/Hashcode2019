@@ -1,7 +1,8 @@
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.IllegalFormatException;
 
-public class Photo {
+public class Photo implements Comparable<Photo> {
 
     public Photo_Orientation getOrientation() {
         return orientation;
@@ -13,6 +14,11 @@ public class Photo {
 
     public int getPhotoID() {
         return photoID;
+    }
+
+    @Override
+    public int compareTo(Photo o) {
+        return this.numberOfTags - o.numberOfTags;
     }
 
     public enum Photo_Orientation {
@@ -28,12 +34,19 @@ public class Photo {
 
     private int photoID;
     private int spaceNeeded;
+    private int numberOfTags;
     private Photo_Orientation orientation;
     private HashSet<String> tags = new HashSet<>();
 
     public Photo(int photoID, String input) {
         this.photoID = photoID;
         decomposePhoto(input);
+    }
+
+    public int getNumberOfTags()
+    {
+        return  this.numberOfTags;
+
     }
 
     private void decomposePhoto(String inputString) throws IllegalFormatException {
@@ -49,5 +62,9 @@ public class Photo {
         for (int index = 2; index < inputBreakdown.length; index++) {
             tags.add(inputBreakdown[index]);
         }
+        numberOfTags = tags.size();
     }
+
+
+
 }

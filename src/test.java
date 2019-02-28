@@ -8,6 +8,8 @@ public class test {
         general variables
          */
         String[] toWrite = new String[5];
+        //String[] toWrite = new String[1];
+       // toWrite[0] = "test.txt";
         toWrite[0] = "a_example.txt";
         toWrite[1] = "b_lovely_landscapes.txt";
         toWrite[2] = "c_memorable_moments.txt";
@@ -16,7 +18,7 @@ public class test {
         for (String file : toWrite) {
             int imageAmount;
             int insertedImageCount = 0;
-            List<Photo> photos = new ArrayList<>();
+            ArrayList<Photo> photos = new ArrayList<>();
             HashSet<String> existingTags = new HashSet<>();
             LinkedList<Slide> toFillSlides = new LinkedList<>();
             /*Read input*/
@@ -39,6 +41,9 @@ public class test {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
+                Collections.sort(photos);
 
                 List<Slide> theSlider = new ArrayList<>();
 
@@ -78,7 +83,7 @@ public class test {
                     theSlider.forEach(testSlide -> testSlide.printSlideInfo(writer));
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+               }
                 /*Output myself out*/
             }
         }
